@@ -36,6 +36,5 @@ public class Classificabile {
                 elencoCategorie[pos] = null;
             }
         }
-
     }
 }
