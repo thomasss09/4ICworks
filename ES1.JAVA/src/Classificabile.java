@@ -30,11 +30,6 @@ public class Classificabile {
 
         return false;
     }
-    public void rimuoviElemento(String idCategoria , int pos){
-        for (int i = 0; i < elencoCategorie.length; i++) {
-            if(elencoCategorie[i] == elencoCategorie[pos]){
-                elencoCategorie[pos] = null;
-            }
-        }
+    public void rimuoviElemento(String idCategoria , int pos){ 
     }
 }
