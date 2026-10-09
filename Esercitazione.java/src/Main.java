@@ -1,5 +1,5 @@
 public class Main {
-    public static void main(String[] Args){
+    public static void mgain(String[] Args){
         Computer p = new Computer();
         Cella<Dispositivo> c = new Cella<>(p);
         Dispositivo d = c.estraiElemento();
