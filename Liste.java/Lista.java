@@ -45,7 +45,7 @@ public class Lista<T> {
     public T get(int i) {
         Nodo scan = this.testa;
         int c = 0;
-        while (scan != null || c == 0) {
+        while (scan != null && c < i) {
             scan = scan.getSucc();
         }
         if (scan == null) {
@@ -53,6 +53,5 @@ public class Lista<T> {
         } else {
             return scan.getDato();
         }
-
     }
 }
