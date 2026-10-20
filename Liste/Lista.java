@@ -1,57 +1,96 @@
-public class Lista<T> {
-    private class Nodo {
-        private final T dato;
-        private Nodo succ;
 
-        public Nodo(T dato) {
-            this.dato = dato;
-            this.succ = null;
+class Lista<T> {
+    class Nodo {
+        private T data;
+        private Nodo next;
+
+        public Nodo(T data) {
+            this.data = data;
+            this.next = null;
         }
 
-        public Nodo(T dato, Nodo succ) {
-            this.dato = dato;
-            this.succ = succ;
+        public Nodo(T data, Nodo next) {
+            this.data = data;
+            this.next = next;
         }
 
-        public T getDato() {
-            return this.dato;
+        public T getData() {
+            return this.data;
         }
 
-        public Nodo getSucc() {
-            return this.succ;
+        public Nodo getNext() {
+            return this.next;
         }
 
-        public void setSucc(Nodo succ) {
-            this.succ = succ;
+        public void setNext(Nodo next) {
+            this.next = next;
         }
     }
 
-    private Nodo testa;
+    protected Nodo head;
 
     public Lista() {
-        this.testa = null;
+        this.head = null;
     }
 
     public int length() {
-        int l = 0;
-        Nodo scan = this.testa;
+        Nodo scan = this.head;
+        int i = 0;
         while (scan != null) {
-            l++;
-            scan = scan.getSucc();
+            i++;
+            scan = scan.getNext();
         }
-        return l;
+        return i;
     }
 
-    public T get(int i) {
-        Nodo scan = this.testa;
-        int c = 0;
-        while (scan != null && c < i) {
-            scan = scan.getSucc();
+    public T get(int p) {
+        int l = this.length();
+        if (p < 0 || p >= l) {
+            throw new IndexOutOfBoundsException("Posizione " + p + " fuori dai limiti");
         }
-        if (scan == null) {
-            throw new IndexOutOfBoundsException();
+
+        else {
+            Nodo scan = this.head;
+            for (int i = 0; i < p; i++) {
+                scan = scan.getNext();
+            }
+
+            return scan.getData();
+        }
+    }
+
+    public void insert(T element, int p) {
+        int l = this.length();
+        if (p < 0 || p > l) {
+            throw new IndexOutOfBoundsException("Posizione " + p + " fuori dai limiti");
+        } else if (p == 0) {
+            this.head = new Nodo(element, this.head);
         } else {
-            return scan.getDato();
+            Nodo scan = this.head;
+            for (int i = 0; i < p - 1; i++) {
+                scan = scan.getNext();
+            }
+            Nodo nuovo = new Nodo(element, scan.getNext());
+            scan.setNext(nuovo);
+        }
+    }
+
+    public void add(T element) {
+        this.insert(element, this.length());
+    }
+
+    public void remove(int p) {
+        int l = this.length();
+        if (p < 0 || p >= l) {
+            throw new IndexOutOfBoundsException("Posizione " + p + " fuori dai limiti");
+        } else if (p == 0) {
+            this.head = this.head.getNext();
+        } else {
+            Nodo scan = this.head;
+            for (int i = 0; i < p - 1; i++) {
+                scan = scan.getNext();
+            }
+            scan.setNext(scan.getNext().getNext());
         }
     }
 }
