@@ -1,7 +1,10 @@
 
-class Lista<T> {
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+
+class Lista<T> implements Iterable<T>{
     class Nodo {
-        private T data;
+        private final T data;
         private Nodo next;
 
         public Nodo(T data) {
@@ -92,5 +95,26 @@ class Lista<T> {
             }
             scan.setNext(scan.getNext().getNext());
         }
+    }
+
+    @Override
+    public Iterator<T> iterator() {
+        return new Iterator<T>() {
+            private Nodo current = head;
+
+            @Override
+            public boolean hasNext() {
+                return current != null;
+            }
+
+            @Override
+            public T next() {
+                if (!hasNext())
+                    throw new NoSuchElementException("non ce new element");
+                T result = current.getData();
+                current = current.getNext();
+                return result;
+            }
+        };
     }
 }
