@@ -1,0 +1,52 @@
+Consegne pacchi ; ho 50 addetti(operatori) e 120 pacchi iniziali da smistare e imballare in un centro apposito.
+dopo i pacchi imballati verranno assegnati ad un corriere che si impegnerà a spedirli. L'azienda competente desidera , evitare che lo stesso pacco venga assegnato a più corrieri ,
+sapere quante assegnazioni sono state effettuate , sapere quanti pacchi rimangono ancora disponibili e monitorare il numero complessivo di operazioni svolte dagli addetti.
+L'obbiettivo predisposto è di creare un app che crei una simulazione dove si possa gestire tutto senza complicazioni ulteriori.
+
+Fase 1 (Analisi del problema):
+1: Da tutti gli operatori devono essere condivisi :
+1.1 i pacchi iniziali 
+1.2 i pacchi assegnati ai corrieri
+1.3 le assegnazioni fallite e le assegnazioni riuscite .
+
+2: l'operatore deve sapere il numero di pacchi da "imballare" e assegnare al corriere e i tentativi che ci mette.
+
+3: se più addetti provano a assegnare più pacchi a uno stesso corriere
+
+4: più passaggi;
+   nella 1 avrò un metodo nPacchiRimanenti per verificare il numero di pacchi residui
+   nella 2 avrò un metodo che in base ai pacchi e agli operatori assegna n pacchi a n operatori 
+   nella 3 aggiorno i dati 
+
+Fase 2:
+per come la penso io ho almeno 5 classi (Main,Pacco,Addetto,Corriere e Thread) , Addetto avrà un metodo imballaPacco(int pacchiAssegnati) che come dice il metodo
+imballa il pacco per poi darlo al corriere , il corriere avrà il metodo consegnaPacco() e un int nPacchiRimanenti che decrementa ogni volta che dentro consegna pacco il
+bool paccoconsegnato sarà true . Ho la classe Pacco che avrà il peso del pacco , il numero identificativo , il destinitario e il ricevente e poi ho il main dove creo 
+gli addetti , i corrieri , i pacchi e inizializzo i thread  . nello specifico Addetto ha : assegnazioniRiuscite, assegnazioniFallite , pacchiAssegnati e tentativiEffetuati
+tutti int ; 
+
+Fase 3:
+/*Si supponga che rimanga disponibile un solo pacco. Due operatori effettuano il controllo quasi nello stesso
+istante. Entrambi leggono 1 pacco disponibile; successivamente ciascuno tenta di assegnarlo.*/
+
+1: Il risultato corretto è che uno dei 2 darà errore e imballerà il pacco
+
+2: l'errore che potrebbe verificarsi è che gli operatori assegnano lo stesso pacco a 2 corrieri
+
+3: che non tutti i pacchi saranno assegnati oppure che rimangano dei pacchi rimanenti da consegnare.
+
+4: nel metodo assegnazione pacchi do n pacchi a n corrieri e se ho numero dispari darò più pacchi ad un singolo corriere con un for che
+assegna ogni pacco a ogni corriere , in tal modo ogni corriere avrà il suo numero preciso di pacchi così da evitare di prendere 1 pacco con più corrieri.
+
+Fase 4 :
+Come si può notare dall'uml nella classe addetto sono state inizializzate 2 variabili , assegnazioniRiuscite e assegnazioniFallite che sono  2 contatori,
+poi per vedere il numero totale di assegnazione basta in un altra variabile sommare le assegnazioniFallite e quelle Riuscite ottenendo quelle totali.
+
+1 si perchè se io non aggiorno le assegnazioniRiuscite e assegnazioniFallite non saprò mai se ho assegnato tutti i pacchi nel senso che se avessi 120 pacchi di cui dall'ultimo aggiornamento 
+delle statistiche ho 80 assegnazioniRiuscite e 30 assegnazioniFallite significa che dei 120 pacchi 10 li ho persi . per questo è importante aggiornare le statische con la stessa priorità dell'assegnazione dei pacchi .
+
+2 si , un incremento numerico è quando aggiorno solo una variabile mentre una sequenza di operazioni è quando ho varie istruzioni o varibaili da eseguire .
+il problema che posso pensare quando faccio un icremento numerico nel mio caso è quello che se sono in parallelo e ho 1 pacco disponibile con 2 corrieri se aggiorno una variabile l'altro thread probabilmente la sovrascrive e si assegna il pacco .
+risulta un problema perchè ho 2 corrieri con 1 pacco doppio.(a causa che i thread hanno l'heap condiviso).
+
+
