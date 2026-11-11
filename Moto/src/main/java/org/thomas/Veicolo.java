@@ -1,5 +1,7 @@
 package org.thomas;
 
+import org.w3c.dom.ls.LSOutput;
+
 import java.util.Date;
 
 public class Veicolo {
@@ -30,14 +32,13 @@ public class Veicolo {
         return -1;
     }
 
-    public int rapportoPesoPotenza() {
-        return -1;
-
+    public void rapportoPesoPotenza() {
+        Float rapporto = potenza/peso;
+        System.out.println("il tuo peso potenza equivale a " + rapporto );
     }
 
     public int punteggioQualitàPrezzo() {
         return -1;
-
     }
 
     @Override
