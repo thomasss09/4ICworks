@@ -1,6 +1,9 @@
 package org.thomas;
 
-class Lista<T> {
+import java.util.Iterator;
+
+class Lista<T> implements Iterable<T> {
+
     class Nodo {
         private T data;
         private Nodo next;
@@ -90,6 +93,32 @@ class Lista<T> {
                 scan = scan.getNext();
             }
             scan.setNext(scan.getNext().getNext());
+        }
+    }
+
+    @Override
+    public Iterator<T> iterator() {
+        return null;
+    }
+
+    private class Iteratore implements Iterator<T> {
+
+        private Nodo cursore;
+
+        public Iteratore() {
+            this.cursore = head;
+        }
+
+        @Override
+        public boolean hasNext() {
+            return this.cursore != null; // vero se c'è almeno 1 elemento
+        }
+
+        @Override
+        public T next() {
+            T dato = this.cursore.getData();
+            cursore = cursore.getNext();
+            return dato;
         }
     }
 }
