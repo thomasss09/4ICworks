@@ -31,11 +31,25 @@ public class Veicolo {
     }
 
     public void rapportoPesoPotenza() {
-        Float rapporto = potenza / peso;
+        float rapporto = potenza / peso;
         System.out.println("il tuo peso potenza equivale a " + rapporto);
     }
 
-    public int punteggioQualitàPrezzo() {
+    public int punteggioQualitàPrezzo(StatoVeicolo v, StatoComponenti s) {
+        int punteggio;
+        if (v == StatoVeicolo.IMMACOLATO && s == StatoComponenti.PARIALNUOVO) {
+            return punteggio = 98;
+        } else if (v == StatoVeicolo.SCONOSCIUTO && s == StatoComponenti.SCONOSCIUTO) {
+            return punteggio = 0;
+        } else if (v == StatoVeicolo.SIACCENDE && s == StatoComponenti.DEGRADATO) {
+            return punteggio = 70;
+        } else if (v == StatoVeicolo.COMENUOVA && s == StatoComponenti.PARIALNUOVO) {
+            return punteggio = 87;
+        } else if (v == StatoVeicolo.SIACCENDE && s == StatoComponenti.SCONOSCIUTO) {
+            return punteggio = 50;
+        } else if (v == StatoVeicolo.SCONOSCIUTO && s == StatoComponenti.PARIALNUOVO) {
+            return punteggio = 60;
+        }
         return -1;
     }
 
