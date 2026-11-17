@@ -7,3 +7,6 @@ Scriva un file di testo con i dati del file precedente ma ordinati in ordine alf
 Si crei un oggetto specifico per gestire i dati (si suggerisce di usare anche l'interfaccia Comparable...) e si utilizzi una Lista o una ListaOrdinabile per lo svolgimento.
 Per la lettura e la scrittura dei file, riferirsi alle API di Java pubblicate da Oracle. */
 
+public class Ordinatore<T extends Comparable<T>> extends Lista<T>{
+    
+}

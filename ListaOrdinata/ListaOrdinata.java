@@ -22,12 +22,27 @@ public class ListaOrdinata<T extends Comparable<T>> extends Lista1<T> {
             this.head = nodo;
         }
     }
+    public int length() {
+        Nodo scan = this.head;
+        int i = 0;
+        while (scan != null) {
+            i++;
+            scan = scan.getNext();
+        }
+        return i;
+    }
+    public void print(){
+        for (T e : this) {
+            System.out.println(e);
+        }
+    }
     public static void main(String[] args) {
         ListaOrdinata <Integer> sc = new ListaOrdinata<>();
         sc.insertt(5);
         sc.insertt(7);
         sc.insertt(3);
         sc.insertt(1);
+        sc.print();
 
     }
 }

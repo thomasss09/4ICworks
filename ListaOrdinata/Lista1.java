@@ -1,5 +1,7 @@
+import java.util.Iterator;
+import java.util.NoSuchElementException;
 
-class Lista1<T> {
+class Lista1<T> implements Iterable<T>{
 
     public Nodo getHead() {
         return head;
@@ -88,5 +90,25 @@ class Lista1<T> {
             }
             scan.setNext(scan.getNext().getNext());
         }
+    }
+    @Override
+    public Iterator<T> iterator() {
+        return new Iterator<T>() {
+            private Nodo current = head;
+
+            @Override
+            public boolean hasNext() {
+                return current != null;
+            }
+
+            @Override
+            public T next() {
+                if (!hasNext())
+                    throw new NoSuchElementException("non ce new element");
+                T result = current.getData();
+                current = current.getNext();
+                return result;
+            }
+        };
     }
 }

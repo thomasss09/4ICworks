@@ -131,12 +131,14 @@ class PaccoSpedizione implements Verificabile {
     }
 
 }
-public boolean consegna(){
-    boolean reciever = (int)Math.random() * 1;
+
+public boolean consegna() {
+    if(tentaConsegna())
     return reciever;
 }
-public boolean tentaConsegna (){
-    if(consegna() == true){
+
+public boolean tentaConsegna() {
+    if (consegna() == true) {
 
     }
 }
