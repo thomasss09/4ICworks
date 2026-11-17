@@ -1,5 +1,5 @@
 
-public class Esercizi {
+public class EserciziSullaRicorsione {
 
     /*
 	Es 1

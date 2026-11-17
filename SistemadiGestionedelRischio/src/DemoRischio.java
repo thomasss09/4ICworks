@@ -45,7 +45,7 @@ class ContoBancario implements Verificabile {
 
     @Override
     public String getTipo() {
-        return "[Conto corrente bancario " + this.iban + " ]";
+        return "[Conto corrente bancario " + this.iban + "]";
     }
 
     public double versamento(double importo) {
@@ -86,7 +86,7 @@ class ImmagineDigitale implements Verificabile {
 
     @Override
     public String getTipo() {
-        return "[Immagine Digitale " + this.nomeFile + " ]";
+        return "[Immagine Digitale " + this.nomeFile + "]";
     }
 
     public void blackAndWhite() {
@@ -127,20 +127,9 @@ class PaccoSpedizione implements Verificabile {
 
     @Override
     public String getTipo() {
-        return "[Spedizione pacco " + this.codiceTracciamento + " ]";
+        return "[Spedizione pacco " + this.codiceTracciamento + "]";
     }
 
-}
-
-public boolean consegna() {
-    if(tentaConsegna())
-    return reciever;
-}
-
-public boolean tentaConsegna() {
-    if (consegna() == true) {
-
-    }
 }
 
 /*
